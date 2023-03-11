@@ -1,0 +1,37 @@
+import React, { useState } from "react";
+import "../Home.scss";
+
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
+import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
+import useFetch from "../../../hooks/useFetch";
+import Carousel from "../../../components/carousel/Carousel";
+
+const TopRated = () => {
+  const [endPoint, setEndPoint] = useState("movie");
+  const { data, loading } = useFetch(`/${endPoint}/top_rated`);
+  // console.log("dataaa", data);
+
+  const onTabChange = (tab) => {
+    if (tab === "Movies") {
+      setEndPoint("movie");
+    } else {
+      setEndPoint("tv");
+    }
+  };
+
+  return (
+    <div className="carouselSection">
+      <ContentWrapper>
+        <span className="carouselTitle">Top Rated</span>
+        <SwitchTabs data={["Movies", "TV Shows"]} onTabChange={onTabChange} />
+      </ContentWrapper>
+      <Carousel
+        data={data?.data?.results}
+        loading={loading}
+        endPoint={endPoint}
+      />
+    </div>
+  );
+};
+
+export default TopRated;
