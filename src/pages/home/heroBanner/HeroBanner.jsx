@@ -13,17 +13,17 @@ const HeroBanner = () => {
 
   const { url } = useSelector((state) => state.home);
 
-  console.log(url);
+  // console.log(url);
 
   const { data, loading } = useFetch("/movie/upcoming");
   //   console.log("upcominf:", data);
 
   useEffect(() => {
-    console.log("works");
+    // console.log("works");
     const bg =
       url.backdrop +
       data?.data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path; // ?. => optional chaining
-    console.log(bg);
+    // console.log(bg);
     setBackground(bg);
   }, [data]);
 
