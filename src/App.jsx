@@ -26,11 +26,11 @@ function App() {
 
   const fetchApiConfiguration = () => {
     fetchDataFromApi("/configuration").then((res) => {
-      console.log("res", res);
+      // console.log("res", res);
       const url = {
-        backdrop: res.data.images.secure_base_url + "original",
-        poster: res.data.images.secure_base_url + "original",
-        profile: res.data.images.secure_base_url + "original",
+        backdrop: res.images.secure_base_url + "original",
+        poster: res.images.secure_base_url + "original",
+        profile: res.images.secure_base_url + "original",
       };
       dispatch(getApiConfiguration(url));
     });
@@ -47,9 +47,8 @@ function App() {
 
     const data = await Promise.all(promises);
     // console.log("data", data);
-    data.map((singleObj) => {
-      return singleObj.data.genres.map((item) => (allGenres[item.id] = item));
-      // console.log("single:", singleObj);
+    data.map(({ genres }) => {
+      return genres.map((item) => (allGenres[item.id] = item));
     });
     dispatch(getGenres(allGenres));
     // console.log("Gene", allGenres);

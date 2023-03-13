@@ -22,7 +22,7 @@ const HeroBanner = () => {
     // console.log("works");
     const bg =
       url.backdrop +
-      data?.data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path; // ?. => optional chaining
+      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path; // ?. => optional chaining
     // console.log(bg);
     setBackground(bg);
   }, [data]);
