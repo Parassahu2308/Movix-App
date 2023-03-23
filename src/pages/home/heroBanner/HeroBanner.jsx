@@ -33,6 +33,12 @@ const HeroBanner = () => {
     }
   };
 
+  const searchQueryButton = () => {
+    if (query.length > 0) {
+      navigate(`/search/${query}`);
+    }
+  };
+
   return (
     <div className="heroBanner">
       {!loading && (
@@ -56,7 +62,7 @@ const HeroBanner = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandle}
             />
-            <button>Search</button>
+            <button onClick={searchQueryButton}>Search</button>
           </div>
         </div>
       </ContentWrapper>
